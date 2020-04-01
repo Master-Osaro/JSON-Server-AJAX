@@ -2,8 +2,28 @@
   "posts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "first": "Osaro",
+      "last": "Iyoha",
+      "company": "Lord-sahx Group"
+    },
+    {
+      "id": "2",
+      "first": "Nosavrixo",
+      "last": "Curnhu",
+      "company": "Lord-sahx Group"
+    },
+    {
+      "id": "3",
+      "first": "Ronaldo",
+      "last": "Cristiano",
+      "company": "Lord-sahx Group"
+    },
+    {
+      "first": "John",
+      "last": "Jason",
+      "company": "Whatever",
+      "another": "helloworld",
+      "id": "YTZ4Z-h"
     }
   ],
   "comments": [
