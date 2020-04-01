@@ -4,12 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON SERVER</title>
+    <style>
+        .btn{
+            border: 1px solid black;
+            padding: 10px;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hide{
+            display: none;
+        }
+
+        form{
+            background-color: aliceblue;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <h2>JSON Server AJAX testing</h2>
+    <div id="message" class="hide"></div>
+    <div id="load1" class="btn hide">Load1</div>
+    <div id="send1" class="btn hide">Send1</div>
+    <br><br>
+
+    <div class="pageInfo"></div>
+    <div id="prev" class="btn">Previous</div>
+    <div id="next" class="btn">Next</div>
+    <br><div id="output"></div><br>
+    <br>
+
+    <form action="" id="myForm">
+        <input type="text" name="firstName"  value="Jason">
+        <input type="text" name="lastName"  value="Tester">
+        <input type="text" name="company"  value="ACME">
+        <input type="submit" value="sendData">
+    </form>
+    <br>
+
+    <input type="text" name="search"><button class="btn" id="search">Search</button>
+    <br><br>
+
+    
+    <textarea id="comment" cols="30" rows="10"></textarea><button id="addComment" class="btn">Add Comment</button>
 
     <script>
 
+        let currentId = 1;
+        let output = document.getElementById("output");
+        
+        //previous button
+        document.querySelector("#prev").addEventListener('click', function() {
+            currentId--
+            loadPage();
+        });
+        //next button
+        document.querySelector("#next").addEventListener('click', function() {
+            currentId++
+            loadPage();
+        });
+        document.querySelector("#myForm").addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+        document.querySelector("#search").addEventListener('click', function() {
+            
+        });
+        document.querySelector("#addComment").addEventListener('click', function() {   
+        });
+
+        function loadPage(){
+            console.log(currentId);
+        }
+
+        function makeGetRequest(url,data) {
+           let xhr = new XMLHttpRequest();
+           xhr.onreadystatechange = function() {
+               if(xhr.readyState==4){
+                   message.innerHTML = xhr.response
+                   console.log(JSON.parse(xhr.response))
+               }
+           }
+           xhr.open("GET",url,true);
+           xhr.send(); 
+        }
+        function makePostRequest(url,data) {
+           let xhr = new XMLHttpRequest();
+           xhr.onreadystatechange = function() {
+               if(xhr.readyState==4){
+                   message.innerHTML = xhr.response
+                   console.log(JSON.parse(xhr.response))
+               }
+           }
+           xhr.open("POST",url,true); //check params from docs
+           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+           xhr.send(data); 
+        }
     </script>
 </body>
 </html>
