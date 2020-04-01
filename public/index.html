@@ -13,11 +13,9 @@
             text-align: center;
             cursor: pointer;
         }
-
         .hide{
             display: none;
         }
-
         form{
             background-color: aliceblue;
             border: 1px solid black;
@@ -104,13 +102,6 @@
                     output.innerHTML += "<b>"+Obj[x].first+" </b> :"+" <b>"+Obj[x].last+"</b> : "+ Obj[x].id+"<br>";
                 
                 }
-
-                // for (const key in Obj[0]) {
-                //     console.log(key,Obj[0][key]);
-                //     output.innerHTML += "<b>"+key+"</b> :"+ Obj[0][key]+ "<br>";
-                // }
-                // output.innerHTML = xhr.response
-                //console.log(JSON.parse(xhr.response))
                }
            }
            xhr.open("GET","http://localhost:3000/posts?q="+search,true);
@@ -172,30 +163,6 @@
            }
            xhr.open("GET","http://localhost:3000/comments?postId="+currentId,true);
            xhr.send(); 
-        }
-
-        // function makeGetRequest(url,data) {
-        //    let xhr = new XMLHttpRequest();
-        //    xhr.onreadystatechange = function() {
-        //        if(xhr.readyState==4){
-        //            message.innerHTML = xhr.response
-        //            console.log(JSON.parse(xhr.response))
-        //        }
-        //    }
-        //    xhr.open("GET",url,true);
-        //    xhr.send(); 
-        // }
-        function makePostRequest(url,data) {
-           let xhr = new XMLHttpRequest();
-           xhr.onreadystatechange = function() {
-               if(xhr.readyState==4){
-                   message.innerHTML = xhr.response
-                   console.log(JSON.parse(xhr.response))
-               }
-           }
-           xhr.open("POST",url,true); //check params from docs
-           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-           xhr.send(data); 
         }
     </script>
 </body>
