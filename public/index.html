@@ -61,12 +61,16 @@
         document.querySelector("#prev").addEventListener('click', function() {
             currentId--
             loadPage();
+            loadComments();
         });
         //next button
         document.querySelector("#next").addEventListener('click', function() {
             currentId++
             loadPage();
+            loadComments();
         });
+
+        //Form Submit
         document.querySelector("#myForm").addEventListener('submit', function(e) {
             e.preventDefault();
             let first = document.querySelector("input[name='firstName']").value;
@@ -76,7 +80,7 @@
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if(xhr.readyState==4){
-                    message.innerHTML = xhr.response
+                    output.innerHTML = xhr.response
                     console.log(JSON.parse(xhr.response))
                 }
             }
@@ -84,12 +88,53 @@
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.send(data);
         });
+
+        //Search Button
         document.querySelector("#search").addEventListener('click', function() {
-            
-        });
-        document.querySelector("#addComment").addEventListener('click', function() {   
+           let search = document.querySelector("input[name='search']").value;
+           output.innerHTML = "";
+           let xhr = new XMLHttpRequest();
+           xhr.onreadystatechange = function() {
+            let search = document.querySelector("input[name='search']").value;
+               if(xhr.readyState==4){
+                let Obj = JSON.parse(xhr.response);
+                console.log(Obj);
+
+                for (let x = 0; x < Obj.length; x++) {
+                    output.innerHTML += "<b>"+Obj[x].first+" </b> :"+" <b>"+Obj[x].last+"</b> : "+ Obj[x].id+"<br>";
+                
+                }
+
+                // for (const key in Obj[0]) {
+                //     console.log(key,Obj[0][key]);
+                //     output.innerHTML += "<b>"+key+"</b> :"+ Obj[0][key]+ "<br>";
+                // }
+                // output.innerHTML = xhr.response
+                //console.log(JSON.parse(xhr.response))
+               }
+           }
+           xhr.open("GET","http://localhost:3000/posts?q="+search,true);
+           xhr.send(); 
         });
 
+        //Comment Button
+        document.querySelector("#addComment").addEventListener('click', function() {   
+            let comments = document.querySelector("#comment").value;
+            let data = "postId="+currentId+"&body="+comments;
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState==4){
+                    let Obj = JSON.parse(xhr.response);
+                    output.innerHTML += "<b>"+Obj.id+" </b> : "+ Obj.body+"<br>";
+                    console.log(JSON.parse(xhr.response))
+                }
+            }
+            xhr.open("POST","http://localhost:3000/comments",true); //check params from docs
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(data);
+        });
+
+        //Function to load data based on current ID
         function loadPage(){
            output.innerHTML = "";
            let xhr = new XMLHttpRequest();
@@ -106,6 +151,26 @@
                }
            }
            xhr.open("GET","http://localhost:3000/posts?id="+currentId,true);
+           xhr.send(); 
+        }
+
+
+        //Function to load data based on current ID
+        function loadComments(){
+           
+           let xhr = new XMLHttpRequest();
+           xhr.onreadystatechange = function() { 
+               if(xhr.readyState==4){ 
+                output.innerHTML += "<br><p>Comments</p>";     
+                let Obj = JSON.parse(xhr.response);
+                for (let x = 0; x < Obj.length; x++) {
+                    output.innerHTML += "<b>"+Obj[x].id+" </b> : "+ Obj[x].body+"<br>";
+                }
+                // output.innerHTML = xhr.response
+                console.log(JSON.parse(xhr.response))
+               }
+           }
+           xhr.open("GET","http://localhost:3000/comments?postId="+currentId,true);
            xhr.send(); 
         }
 
