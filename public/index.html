@@ -69,6 +69,20 @@
         });
         document.querySelector("#myForm").addEventListener('submit', function(e) {
             e.preventDefault();
+            let first = document.querySelector("input[name='firstName']").value;
+            let last  = document.querySelector("input[name='lastName']").value;
+            let company = document.querySelector("input[name='company']").value;
+            let data = "first="+first+"&last="+last+"&company="+company;
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState==4){
+                    message.innerHTML = xhr.response
+                    console.log(JSON.parse(xhr.response))
+                }
+            }
+            xhr.open("POST","http://localhost:3000/posts",true); //check params from docs
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(data);
         });
         document.querySelector("#search").addEventListener('click', function() {
             
@@ -77,20 +91,35 @@
         });
 
         function loadPage(){
-            console.log(currentId);
-        }
-
-        function makeGetRequest(url,data) {
+           output.innerHTML = "";
            let xhr = new XMLHttpRequest();
            xhr.onreadystatechange = function() {
+               
                if(xhr.readyState==4){
-                   message.innerHTML = xhr.response
-                   console.log(JSON.parse(xhr.response))
+                let Obj = JSON.parse(xhr.response);
+                for (const key in Obj[0]) {
+                    console.log(key,Obj[0][key]);
+                    output.innerHTML += "<b>"+key+"</b> :"+ Obj[0][key]+ "<br>";
+                }
+                // output.innerHTML = xhr.response
+                //console.log(JSON.parse(xhr.response))
                }
            }
-           xhr.open("GET",url,true);
+           xhr.open("GET","http://localhost:3000/posts?id="+currentId,true);
            xhr.send(); 
         }
+
+        // function makeGetRequest(url,data) {
+        //    let xhr = new XMLHttpRequest();
+        //    xhr.onreadystatechange = function() {
+        //        if(xhr.readyState==4){
+        //            message.innerHTML = xhr.response
+        //            console.log(JSON.parse(xhr.response))
+        //        }
+        //    }
+        //    xhr.open("GET",url,true);
+        //    xhr.send(); 
+        // }
         function makePostRequest(url,data) {
            let xhr = new XMLHttpRequest();
            xhr.onreadystatechange = function() {
