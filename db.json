@@ -55,6 +55,41 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "postId": "1",
+      "body": "Osaro is a great guy",
+      "id": 2
+    },
+    {
+      "postId": "2",
+      "body": "Dunno this guy",
+      "id": 3
+    },
+    {
+      "postId": "3",
+      "body": "Ronaldo's the Word's best!",
+      "id": 4
+    },
+    {
+      "postId": "4",
+      "body": "John is Wicked",
+      "id": 5
+    },
+    {
+      "postId": "2",
+      "body": "Maybe He's New",
+      "id": 6
+    },
+    {
+      "postId": "3",
+      "body": "I'm sure of it",
+      "id": 7
+    },
+    {
+      "postId": "4",
+      "body": "lol, yeah",
+      "id": 8
     }
   ],
   "profile": {
