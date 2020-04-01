@@ -7,23 +7,47 @@
       "company": "Lord-sahx Group"
     },
     {
-      "id": "2",
+      "id": 2,
       "first": "Nosavrixo",
       "last": "Curnhu",
       "company": "Lord-sahx Group"
     },
     {
-      "id": "3",
+      "id": 3,
       "first": "Ronaldo",
       "last": "Cristiano",
       "company": "Lord-sahx Group"
     },
     {
+      "id": 4,
       "first": "John",
-      "last": "Jason",
+      "last": "JSON",
       "company": "Whatever",
-      "another": "helloworld",
-      "id": "YTZ4Z-h"
+      "another": "helloworld"
+    },
+    {
+      "id": 5,
+      "first": "Kakashi",
+      "last": "Hatake",
+      "company": "Naruto"
+    },
+    {
+      "id": 6,
+      "first": "Jason",
+      "last": "Tester",
+      "company": "ACME"
+    },
+    {
+      "id": 7,
+      "first": "Ify",
+      "last": "Bola",
+      "company": "TEST"
+    },
+    {
+      "first": "Mummy",
+      "last": "Iyoha",
+      "company": "Efevinade",
+      "id": 8
     }
   ],
   "comments": [
