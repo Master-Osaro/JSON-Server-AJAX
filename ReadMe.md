@@ -3,7 +3,7 @@
 A simple webpage that saves data into a .json file and reads data from it locally
 
 
-## What i will learn
+## Learning Objectives
 
 * Get more familiar with git basic commands and GitHub.
 * How a run a JSON server locally to practice and test API's
